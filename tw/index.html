@@ -13,8 +13,11 @@
     $(document).ready(function() {
       let cd = $("#countDown").val();
       if (cd == "") cd = 0;
-      else cd++;
-      $("#countDown").val(cd);
+      let target = 60;
+      while(cd < target){
+      cd++;
+      setTimeout$(("#countDown").val(cd), 1000);
+      }
     });
   </script>
 </html>
