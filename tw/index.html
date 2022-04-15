@@ -16,8 +16,9 @@
       let target = 60;
       while(cd < target){
       cd++;
-      setTimeout($("#countDown").val(cd), 1000);
-      }
+      setTimeout(function() {
+      $("#countDown").val(cd);
+      }, 1000);
     });
   </script>
 </html>
