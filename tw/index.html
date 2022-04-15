@@ -11,15 +11,17 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"/>
   <script type="text/javascript">
     $(document).ready(function() {
+    countDown();
+    });
+    
+    function counDown(){
     let cd = $("#countDown").val();
     if (cd == "") cd = 0;
     let target = 60;
     while(cd < target){
     cd++;
-    setTimeout(function() {
     $("#countDown").val(cd);
-    }, 1000);
     }
-    });
+    }
   </script>
 </html>
