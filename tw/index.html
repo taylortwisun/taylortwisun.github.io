@@ -9,9 +9,11 @@
   <a href="google.com">google.com</a>
   <input type="text" id="countDown"/>
   <script type="text/javascript">
-    let cd = $("#countDown").val();
+    $(document).ready(function {
+                      let cd = $("#countDown").val();
     if (cd == "") cd = 0;
     else cd++;
     $("#countDown").val(cd);
+                      });
   </script>
 </html>
