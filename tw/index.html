@@ -14,14 +14,19 @@
     countDown();
     });
     
-    function countDown(){
-    let cd = $("#countDown").val();
-    if (cd == "") cd = 0;
-    let target = 60;
-    while(cd < target){
-    cd++;
-    $("#countDown").val(cd);
-    }
+    function countDown() {
+        let hours = 24;
+        let minutes = 60;
+        setInterval(function () {
+            $("#countDown").val(hours + ' : ' + minutes);
+            minutes--;
+            if (minutes == '00') {
+                hours--;
+            }
+            if (hours == '00') {
+                hours = 24;
+            }
+        }, 1000)
     }
   </script>
 </html>
