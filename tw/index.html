@@ -8,23 +8,24 @@
   <h1>Hello world!</h1>
   <a href="https://www.google.com">google.com</a>
   <input type="text" id="countDown"/>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"/>
   <script type="text/javascript">
     $(document).ready(function() {
     countDown();
     });
     
     function countDown() {
-        let hours = 24;
+        let hours = 2;
         let minutes = 60;
         setInterval(function () {
-            $("#countDown").val(hours + ' : ' + minutes);
+            // $("#countDown").val(hours + ' : ' + minutes);
+            document.getElementById('countDown').value = hours + ' : ' + minutes;
             minutes--;
-            if (minutes == '00') {
+            if (minutes == 0) {
                 hours--;
+                minutes = 60;
             }
-            if (hours == '00') {
-                hours = 24;
+            if (hours == 0) {
+                hours = 1;
             }
         }, 1000)
     }
