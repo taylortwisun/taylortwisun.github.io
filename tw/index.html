@@ -9,9 +9,13 @@
   <a href="https://www.google.com">google.com</a>
   <input type="text" id="countDown"/>
   <script type="text/javascript">
-    $(document).ready(function() {
-    countDown();
-    });
+//     $(document).ready(function() {
+//     countDown();
+//     });
+    
+    window.onload = function (){
+        countDown();
+    }
     
     function countDown() {
         let hours = 2;
