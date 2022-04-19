@@ -19,8 +19,6 @@
     function countDown() {
         let hours = 2;
         let minutes = 60;
-        let hText = '';
-        let mText = '';
         let intervalId = setInterval(function () {
             // $("#countDown").val(hours + ' : ' + minutes);
             minutes--;
@@ -28,6 +26,8 @@
                 hours--;
                 minutes = 60;
             }
+          let hText = hours;
+          let mText = minutes;
           if (hours < 10) {
               hText = '0' + hours;
           }
@@ -35,10 +35,10 @@
               mText = '0' + minutes;
           }
           document.getElementById('countDown').innerText = hText + ' : ' + mText;
-            if (hours == 0 && minutes == 0) {
-              clearInterval(intervalId);
-                window.href = "https://www.google.com";
-            }
+          if (hours == 0 && minutes == 0) {
+            clearInterval(intervalId);
+            window.href = "https://www.google.com";
+          }
         }, 1000)
     }
   </script>
