@@ -21,15 +21,12 @@
         let minutes = 60;
         let hText = '';
         let mText = '';
-        setInterval(function () {
+        let intervalId = setInterval(function () {
             // $("#countDown").val(hours + ' : ' + minutes);
             minutes--;
             if (minutes == 0) {
                 hours--;
                 minutes = 60;
-            }
-            if (hours == 0) {
-                hours = 2;
             }
           if (hours < 10) {
               hText = '0' + hours;
@@ -38,6 +35,10 @@
               mText = '0' + minutes;
           }
           document.getElementById('countDown').innerText = hText + ' : ' + mText;
+            if (hours == 0 && minutes == 0) {
+              clearInterval(intervalId);
+                window.href = "https://www.google.com";
+            }
         }, 1000)
     }
   </script>
