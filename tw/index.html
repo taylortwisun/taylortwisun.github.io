@@ -19,17 +19,25 @@
     function countDown() {
         let hours = 2;
         let minutes = 60;
+        let hText = '';
+        let mText = '';
         setInterval(function () {
             // $("#countDown").val(hours + ' : ' + minutes);
-            document.getElementById('countDown').innerText = hours + ' : ' + minutes;
             minutes--;
             if (minutes == 0) {
                 hours--;
                 minutes = 60;
             }
             if (hours == 0) {
-                hours = 1;
+                hours = 2;
             }
+          if (hours < 10) {
+              hText = '0' + hours;
+          }
+          if (minutes < 10) {
+              mText = '0' + minutes;
+          }
+          document.getElementById('countDown').innerText = hText + ' : ' + mText;
         }, 1000)
     }
   </script>
