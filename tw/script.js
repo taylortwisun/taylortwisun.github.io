@@ -1,5 +1,46 @@
-const background = document.getElementById("background");
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
 const menuItems = document.querySelectorAll(".menu li a");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const leaves = [];
+const numberOfLeaves = 50;
+
+for (let i = 0; i < numberOfLeaves; i++) {
+    const leaf = {
+        x: Math.random() * canvas.width,
+        y: -Math.random() * canvas.height,
+        size: Math.random() * 50 + 20,
+        speed: Math.random() * 2 + 1
+    };
+    leaves.push(leaf);
+}
+
+function drawLeaf(leaf) {
+    ctx.fillStyle = "#33AA33";
+    ctx.beginPath();
+    ctx.moveTo(leaf.x, leaf.y);
+    ctx.lineTo(leaf.x - 10, leaf.y + 20);
+    ctx.lineTo(leaf.x + 10, leaf.y + 20);
+    ctx.closePath();
+    ctx.fill();
+}
+
+function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (const leaf of leaves) {
+        leaf.y += leaf.speed;
+        if (leaf.y > canvas.height) {
+            leaf.y = -leaf.size;
+        }
+        drawLeaf(leaf);
+    }
+
+    requestAnimationFrame(draw);
+}
 
 function setBackground() {
     const now = new Date();
@@ -22,9 +63,9 @@ function setBackground() {
         effect = "snow";
     }
 
-    background.style.backgroundImage = `url('${season}.jpg')`;
-    background.style.backgroundSize = "cover";
-    background.style.backgroundPosition = "center";
+    canvas.style.backgroundImage = `url('${season}.jpg')`;
+    canvas.style.backgroundSize = "cover";
+    canvas.style.backgroundPosition = "center";
 
     menuItems.forEach(item => {
         if (item.textContent === "Trang Chủ") {
@@ -35,7 +76,7 @@ function setBackground() {
     });
 
     if (effect === "falling-leaves") {
-        createFallingLeaves();
+        draw();
     } else if (effect === "snow") {
         createFallingSnow();
     }
@@ -44,14 +85,6 @@ function setBackground() {
 function toggleMenu() {
     var menu = document.getElementById("menu");
     menu.classList.toggle("show");
-}
-
-function createFallingLeaves() {
-    // Thêm mã JavaScript cho hiệu ứng lá rơi ở đây
-}
-
-function createFallingSnow() {
-    // Thêm mã JavaScript cho hiệu ứng tuyết rơi ở đây
 }
 
 setBackground();
