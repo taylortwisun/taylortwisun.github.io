@@ -1,0 +1,18 @@
+/* Đặt kiểu cho sản phẩm */
+.product-page {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.product-column {
+    width: calc(25% - 20px);
+    margin-bottom: 20px;
+}
+
+.product-column img {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
