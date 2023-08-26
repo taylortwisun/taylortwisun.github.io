@@ -1,8 +1,13 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 /* Định nghĩa kiểu dáng chung */
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
     overflow: hidden;
 }
 
@@ -32,11 +37,11 @@ body {
     height: 3px;
     background-color: #fff;
     margin: 3px 0;
-    transition: all 0.3s ease; /* Hiệu ứng hover */
+    transition: all 0.3s ease;
 }
 
 .menu-icon:hover div {
-    background-color: #FFD700; /* Màu khi hover */
+    background-color: #FFD700;
 }
 
 .menu {
@@ -53,7 +58,7 @@ body {
 .menu li a {
     color: #333;
     text-decoration: none;
-    transition: color 0.3s ease; /* Hiệu ứng hover */
+    transition: color 0.3s ease;
 }
 
 .menu li a.active {
@@ -61,12 +66,13 @@ body {
 }
 
 .menu li a:hover {
-    color: #FFD700; /* Màu khi hover */
+    color: #FFD700;
 }
 
 .content {
     flex: 1;
     position: relative;
+    overflow: hidden;
 }
 
 #canvas {
@@ -77,6 +83,22 @@ body {
     height: 100%;
     background-size: cover;
     background-position: center;
+}
+
+.spring {
+    background-image: url('spring.jpg');
+}
+
+.summer {
+    background-image: url('summer.jpg');
+}
+
+.autumn {
+    background-image: url('autumn.jpg');
+}
+
+.winter {
+    background-image: url('winter.jpg');
 }
 
 /* Các đoạn mã CSS cho hiệu ứng khác (ví dụ: snow) */
