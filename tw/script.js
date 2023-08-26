@@ -8,8 +8,6 @@ canvas.height = window.innerHeight;
 
 const leaves = [];
 const numberOfLeaves = 50;
-const snowflakes = [];
-const numberOfSnowflakes = 100;
 
 for (let i = 0; i < numberOfLeaves; i++) {
     const leaf = {
@@ -21,22 +19,12 @@ for (let i = 0; i < numberOfLeaves; i++) {
     leaves.push(leaf);
 }
 
-// Các đoạn mã khác (tạo hiệu ứng lá rơi và tuyết rơi)
-
 function drawLeaf(leaf) {
     ctx.fillStyle = "#33AA33";
     ctx.beginPath();
     ctx.moveTo(leaf.x, leaf.y);
     ctx.lineTo(leaf.x - 10, leaf.y + 20);
     ctx.lineTo(leaf.x + 10, leaf.y + 20);
-    ctx.closePath();
-    ctx.fill();
-}
-
-function drawSnowflake(snowflake) {
-    ctx.fillStyle = "#FFFFFF";
-    ctx.beginPath();
-    ctx.arc(snowflake.x, snowflake.y, snowflake.radius, 0, Math.PI * 2);
     ctx.closePath();
     ctx.fill();
 }
@@ -52,27 +40,7 @@ function draw() {
         drawLeaf(leaf);
     }
 
-    for (const snowflake of snowflakes) {
-        snowflake.y += snowflake.speed;
-        if (snowflake.y > canvas.height) {
-            snowflake.y = 0;
-        }
-        drawSnowflake(snowflake);
-    }
-
     requestAnimationFrame(draw);
-}
-
-function createFallingSnow() {
-    for (let i = 0; i < numberOfSnowflakes; i++) {
-        const snowflake = {
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            radius: Math.random() * 5 + 2,
-            speed: Math.random() * 1 + 0.5
-        };
-        snowflakes.push(snowflake);
-    }
 }
 
 function setActiveMenuItem() {
@@ -87,4 +55,38 @@ function toggleMenu() {
     menu.classList.toggle("show");
 }
 
+function setBackground() {
+    const now = new Date();
+    const currentMonth = now.getMonth() + 1;
+
+    let season = "";
+    let effect = "";
+
+    if (currentMonth >= 3 && currentMonth <= 5) {
+        season = "spring";
+        effect = "none";
+    } else if (currentMonth >= 6 && currentMonth <= 8) {
+        season = "summer";
+        effect = "none";
+    } else if (currentMonth >= 9 && currentMonth <= 11) {
+        season = "autumn";
+        effect = "falling-leaves";
+    } else {
+        season = "winter";
+        effect = "snow";
+    }
+
+    container.classList = "container " + season;
+
+    setActiveMenuItem();
+
+    if (effect === "falling-leaves") {
+        draw();
+    } else if (effect === "snow") {
+        createFallingSnow();
+        draw();
+    }
+}
+
 setBackground();
+draw(); // Bắt đầu hiệu ứng lá rơi ngay khi tải trang
