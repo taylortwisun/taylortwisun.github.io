@@ -19,16 +19,6 @@ for (let i = 0; i < numberOfLeaves; i++) {
     leaves.push(leaf);
 }
 
-function drawLeaf(leaf) {
-    ctx.fillStyle = "#33AA33";
-    ctx.beginPath();
-    ctx.moveTo(leaf.x, leaf.y);
-    ctx.lineTo(leaf.x - 10, leaf.y + 20);
-    ctx.lineTo(leaf.x + 10, leaf.y + 20);
-    ctx.closePath();
-    ctx.fill();
-}
-
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -43,6 +33,17 @@ function draw() {
     requestAnimationFrame(draw);
 }
 
+function drawLeaf(leaf) {
+    const leafImage = new Image();
+    leafImage.src = "leaf.png"; // Đường dẫn đến hình ảnh leaf.png
+
+    // Chờ hình ảnh tải xong trước khi vẽ
+    leafImage.onload = function() {
+        // Vẽ hình ảnh lá tại vị trí (x - size / 2, y) với kích thước size x size
+        ctx.drawImage(leafImage, leaf.x - leaf.size / 2, leaf.y, leaf.size, leaf.size);
+    };
+}
+
 function setActiveMenuItem() {
     menuItems.forEach(item => {
         item.classList.remove("active");
@@ -53,39 +54,6 @@ function setActiveMenuItem() {
 function toggleMenu() {
     var menu = document.getElementById("menu");
     menu.classList.toggle("show");
-}
-
-function setBackground() {
-    const now = new Date();
-    const currentMonth = now.getMonth() + 1;
-
-    let season = "";
-    let effect = "";
-
-    if (currentMonth >= 3 && currentMonth <= 5) {
-        season = "spring";
-        effect = "none";
-    } else if (currentMonth >= 6 && currentMonth <= 8) {
-        season = "summer";
-        effect = "none";
-    } else if (currentMonth >= 9 && currentMonth <= 11) {
-        season = "autumn";
-        effect = "falling-leaves";
-    } else {
-        season = "winter";
-        effect = "snow";
-    }
-
-    container.classList = "container " + season;
-
-    setActiveMenuItem();
-
-    if (effect === "falling-leaves") {
-        draw();
-    } else if (effect === "snow") {
-        createFallingSnow();
-        draw();
-    }
 }
 
 setBackground();
