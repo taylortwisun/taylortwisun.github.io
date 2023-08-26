@@ -78,29 +78,22 @@ function setBackground() {
 
     let season = "";
     let effect = "";
-    let backgroundImage = ""; // Thêm biến để lưu đường dẫn đến hình ảnh nền
 
     if (currentMonth >= 3 && currentMonth <= 5) {
         season = "spring";
         effect = "none";
-        backgroundImage = "spring.jpg"; // Đường dẫn đến hình ảnh mùa xuân
     } else if (currentMonth >= 6 && currentMonth <= 8) {
         season = "summer";
         effect = "none";
-        backgroundImage = "summer.jpg"; // Đường dẫn đến hình ảnh mùa hè
     } else if (currentMonth >= 9 && currentMonth <= 11) {
         season = "autumn";
         effect = "falling-leaves";
-        backgroundImage = "autumn.jpg"; // Đường dẫn đến hình ảnh mùa thu
     } else {
         season = "winter";
         effect = "snow";
-        backgroundImage = "winter.jpg"; // Đường dẫn đến hình ảnh mùa đông
     }
 
-    canvas.style.backgroundImage = `url('${backgroundImage}')`; // Đặt hình ảnh nền
-    canvas.style.backgroundSize = "cover";
-    canvas.style.backgroundPosition = "center";
+    container.className = season; // Đặt lớp tương ứng với mùa
 
     setActiveMenuItem();
 
@@ -110,16 +103,6 @@ function setBackground() {
         createFallingSnow();
         draw();
     }
-}
-
-function setActiveMenuItem() {
-    menuItems.forEach(item => {
-        if (item.textContent === "Trang Chính") {
-            item.classList.add("active");
-        } else {
-            item.classList.remove("active");
-        }
-    });
 }
 
 function toggleMenu() {
