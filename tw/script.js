@@ -30,18 +30,6 @@ function drawLeaf(leaf) {
     ctx.fill();
 }
 
-function createFallingSnow() {
-    for (let i = 0; i < numberOfSnowflakes; i++) {
-        const snowflake = {
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            radius: Math.random() * 5 + 2,
-            speed: Math.random() * 1 + 0.5
-        };
-        snowflakes.push(snowflake);
-    }
-}
-
 function drawSnowflake(snowflake) {
     ctx.fillStyle = "#FFFFFF";
     ctx.beginPath();
@@ -72,6 +60,18 @@ function draw() {
     requestAnimationFrame(draw);
 }
 
+function createFallingSnow() {
+    for (let i = 0; i < numberOfSnowflakes; i++) {
+        const snowflake = {
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            radius: Math.random() * 5 + 2,
+            speed: Math.random() * 1 + 0.5
+        };
+        snowflakes.push(snowflake);
+    }
+}
+
 function setBackground() {
     const now = new Date();
     const currentMonth = now.getMonth() + 1;
@@ -97,13 +97,7 @@ function setBackground() {
     canvas.style.backgroundSize = "cover";
     canvas.style.backgroundPosition = "center";
 
-    menuItems.forEach(item => {
-        if (item.textContent === "Trang Chính") {
-            item.classList.add("active");
-        } else {
-            item.classList.remove("active");
-        }
-    });
+    setActiveMenuItem();
 
     if (effect === "falling-leaves") {
         draw();
@@ -111,6 +105,16 @@ function setBackground() {
         createFallingSnow();
         draw();
     }
+}
+
+function setActiveMenuItem() {
+    menuItems.forEach(item => {
+        if (item.textContent === "Trang Chính") {
+            item.classList.add("active");
+        } else {
+            item.classList.remove("active");
+        }
+    });
 }
 
 function toggleMenu() {
