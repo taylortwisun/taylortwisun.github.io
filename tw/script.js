@@ -13,42 +13,63 @@ const setBackground = (season) => {
     canvas.style.backgroundColor = seasons[season];
 };
 
-// Hàm vẽ lá
 const drawLeaf = (x, y) => {
-    // Đoạn mã vẽ lá ở đây
+    ctx.fillStyle = "#ff9900"; // Màu cam cho lá
+    ctx.beginPath();
+    ctx.arc(x, y, 5, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.fill();
+
+    y += 1; // Dịch chuyển lá xuống dưới
+    if (y > canvas.height) {
+        y = 0; // Đặt lại vị trí y khi lá vượt qua khung
+    }
 };
 
-// Hàm vẽ tuyết rơi
 const drawSnowflake = (x, y) => {
-    // Đoạn mã vẽ tuyết rơi ở đây
+    ctx.fillStyle = "#ffffff"; // Màu trắng cho tuyết rơi
+    ctx.beginPath();
+    ctx.arc(x, y, 3, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.fill();
+
+    y += 2; // Dịch chuyển tuyết rơi xuống dưới
+    if (y > canvas.height) {
+        y = 0; // Đặt lại vị trí y khi tuyết vượt qua khung
+    }
 };
 
-// Hàm tạo hiệu ứng
+let leafPosition = 0; // Vị trí ban đầu của lá
+let snowflakePosition = 0; // Vị trí ban đầu của tuyết
+
 const animate = () => {
-    // Xoá canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Gọi hàm vẽ lá hoặc tuyết rơi tùy theo mùa
     if (canvas.style.backgroundColor === seasons.spring) {
-        drawLeaf();
+        drawLeaf(canvas.width / 2, leafPosition);
+        leafPosition += 1;
+        if (leafPosition > canvas.height) {
+            leafPosition = 0;
+        }
     } else if (canvas.style.backgroundColor === seasons.winter) {
-        drawSnowflake();
+        drawSnowflake(canvas.width / 2, snowflakePosition);
+        snowflakePosition += 2;
+        if (snowflakePosition > canvas.height) {
+            snowflakePosition = 0;
+        }
     }
 
     requestAnimationFrame(animate);
 };
 
-// Hàm hiển thị/ẩn menu
 const toggleMenu = () => {
     const menu = document.getElementById("menu");
     menu.classList.toggle("show");
 };
 
-// Đặt màu nền ban đầu cho mùa xuân và bắt đầu hiệu ứng
 setBackground("spring");
 animate();
 
-// Xử lý sự kiện thay đổi kích thước màn hình
 window.addEventListener("resize", () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
