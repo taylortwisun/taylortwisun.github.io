@@ -1,47 +1,62 @@
+<!DOCTYPE html>
 <html>
-  <style>
-    #countDown {
-      width: 100px;
-      color: red;
-    }
-  </style>
-  <h1>Hello world!</h1>
-  <p>Click vào đây để chuyển sang trang chủ Google <a href="https://www.google.com">google.com</a> hoặc hệ thống sẽ tự động chuyển tiếp sang trong vòng <strong id="countDown"></strong></p>
-  <script type="text/javascript">
-//     $(document).ready(function() {
-//     countDown();
-//     });
-    
-    window.onload = function (){
-        countDown();
-    }
-    
-    function countDown() {
-        let hours = 0;
-        let minutes = 60;
-        let intervalId = setInterval(function () {
-            // $("#countDown").val(hours + ' : ' + minutes);
-            minutes--;
-//             if (minutes == 0) {
-//                 hours--;
-//               if (hours > 0) {
-//                 minutes = 60;
-//               }
-//             }
-          let hText = hours;
-          let mText = minutes;
-          if (hours < 10) {
-              hText = '0' + hours;
-          }
-          if (minutes < 10) {
-              mText = '0' + minutes;
-          }
-          document.getElementById('countDown').innerText = hText + ' : ' + mText;
-          if (hours == 0 && minutes == 0) {
-            clearInterval(intervalId);
-            location.href = "https://www.google.com";
-          }
-        }, 1000)
-    }
-  </script>
+<head>
+    <title>Trang Web Hiển Thị Hình Ảnh và Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .menu-icon {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        .menu-icon div {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            margin: 3px 0;
+        }
+        .menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .menu li {
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Trang Web của Bạn</h1>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <ul class="menu" id="menu">
+        <li><a href="#">Trang Chủ</a></li>
+        <li><a href="#">Sản Phẩm</a></li>
+        <li><a href="#">About</a></li>
+    </ul>
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("menu");
+            menu.classList.toggle("show");
+        }
+    </script>
+</body>
 </html>
