@@ -14,11 +14,10 @@ const setBackground = (season) => {
 };
 
 const drawLeaf = (x, y) => {
-    ctx.fillStyle = "#ff9900"; // Màu cam cho lá
-    ctx.beginPath();
-    ctx.arc(x, y, 5, 0, Math.PI * 2);
-    ctx.closePath();
-    ctx.fill();
+    const leafImage = new Image();
+    leafImage.src = "leaf.png"; // Đường dẫn đến tệp ảnh lá
+
+    ctx.drawImage(leafImage, x, y, 20, 20);
 
     y += 1; // Dịch chuyển lá xuống dưới
     if (y > canvas.height) {
