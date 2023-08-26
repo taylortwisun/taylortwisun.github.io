@@ -1,10 +1,5 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
-const canvasContainer = document.getElementById("canvas-container");
-const seasons = {
-    spring: "#86c232",
-    winter: "#0099cc"
-};
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
