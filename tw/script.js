@@ -44,6 +44,39 @@ function drawLeaf(leaf) {
     };
 }
 
+function setBackground() {
+    const now = new Date();
+    const currentMonth = now.getMonth() + 1;
+
+    let season = "";
+    let effect = "";
+
+    if (currentMonth >= 3 && currentMonth <= 5) {
+        season = "spring";
+        effect = "none";
+    } else if (currentMonth >= 6 && currentMonth <= 8) {
+        season = "summer";
+        effect = "none";
+    } else if (currentMonth >= 9 && currentMonth <= 11) {
+        season = "autumn";
+        effect = "falling-leaves";
+    } else {
+        season = "winter";
+        effect = "snow";
+    }
+
+    container.classList = "container " + season;
+
+    setActiveMenuItem();
+
+    if (effect === "falling-leaves") {
+        draw();
+    } else if (effect === "snow") {
+        createFallingSnow();
+        draw();
+    }
+}
+
 function setActiveMenuItem() {
     menuItems.forEach(item => {
         item.classList.remove("active");
