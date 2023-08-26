@@ -4,9 +4,12 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-image: url('background.jpg'); /* Đường dẫn đến hình ảnh nền */
-    background-size: cover;
-    background-position: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .header {
@@ -29,6 +32,11 @@ body {
     height: 3px;
     background-color: #fff;
     margin: 3px 0;
+    transition: all 0.3s ease; /* Hiệu ứng hover */
+}
+
+.menu-icon:hover div {
+    background-color: #FFD700; /* Màu khi hover */
 }
 
 .menu {
@@ -42,6 +50,33 @@ body {
     margin-right: 20px;
 }
 
+.menu li a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease; /* Hiệu ứng hover */
+}
+
 .menu li a.active {
     font-weight: bold;
 }
+
+.menu li a:hover {
+    color: #FFD700; /* Màu khi hover */
+}
+
+.content {
+    flex: 1;
+    position: relative;
+}
+
+#canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Các đoạn mã CSS cho hiệu ứng khác (ví dụ: snow) */
