@@ -1,5 +1,9 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
+const seasons = {
+    spring: "#86c232",
+    winter: "#0099cc"
+};
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -12,7 +16,9 @@ const drawLeaf = (x, y) => {
     const leafImage = new Image();
     leafImage.src = "leaf.png"; // Đường dẫn đến tệp ảnh lá
 
-    ctx.drawImage(leafImage, x, y, 20, 20);
+    leafImage.onload = () => {
+        ctx.drawImage(leafImage, x, y, 20, 20);
+    };
 
     y += 1; // Dịch chuyển lá xuống dưới
     if (y > canvas.height) {
