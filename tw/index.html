@@ -1,31 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Trang Web Hiển Thị Hình Ảnh và Menu</title>
+    <title>Trang Chủ</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            overflow: hidden;
         }
-        .header {
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .menu-icon {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-        .menu-icon div {
-            width: 25px;
-            height: 3px;
-            background-color: #fff;
-            margin: 3px 0;
+        #background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            transition: opacity 2s ease-in-out;
         }
         .menu {
             display: flex;
@@ -36,27 +27,60 @@
         .menu li {
             margin-right: 20px;
         }
+        .menu li a.active {
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Trang Web của Bạn</h1>
-        <div class="menu-icon" onclick="toggleMenu()">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>
+    <img id="background" src="" alt="Mùa hiện tại">
     <ul class="menu" id="menu">
-        <li><a href="#">Trang Chủ</a></li>
+        <li><a href="#" class="active">Trang Chủ</a></li>
         <li><a href="#">Sản Phẩm</a></li>
         <li><a href="#">About</a></li>
     </ul>
+    
     <script>
-        function toggleMenu() {
-            var menu = document.getElementById("menu");
-            menu.classList.toggle("show");
+        const background = document.getElementById("background");
+        const menuItems = document.querySelectorAll(".menu li a");
+
+        function setBackground() {
+            const now = new Date();
+            const currentMonth = now.getMonth() + 1;
+
+            let season = "";
+            let effect = "";
+
+            if (currentMonth >= 3 && currentMonth <= 5) {
+                season = "spring";
+                effect = "none";
+            } else if (currentMonth >= 6 && currentMonth <= 8) {
+                season = "summer";
+                effect = "none";
+            } else if (currentMonth >= 9 && currentMonth <= 11) {
+                season = "autumn";
+                effect = "falling-leaves";
+            } else {
+                season = "winter";
+                effect = "snow";
+            }
+
+            background.style.backgroundImage = `url('${season}.jpg')`;
+            background.style.backgroundSize = "cover";
+            background.style.backgroundPosition = "center";
+
+            menuItems.forEach(item => {
+                if (item.textContent === "Trang Chủ") {
+                    item.classList.add("active");
+                } else {
+                    item.classList.remove("active");
+                }
+            });
+
+            // Add code to trigger effects (falling leaves, snow, etc.)
         }
+
+        setBackground();
     </script>
 </body>
 </html>
