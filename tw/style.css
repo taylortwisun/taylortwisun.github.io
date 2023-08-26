@@ -4,6 +4,9 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
+    background-image: url('background.jpg'); /* Đường dẫn đến hình ảnh nền */
+    background-size: cover;
+    background-position: center;
 }
 
 .header {
@@ -41,14 +44,4 @@ body {
 
 .menu li a.active {
     font-weight: bold;
-}
-
-#canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
 }
