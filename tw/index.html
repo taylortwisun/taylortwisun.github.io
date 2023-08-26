@@ -1,86 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Trang Chủ</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-        }
-        #background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            transition: opacity 2s ease-in-out;
-        }
-        .menu {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-        .menu li {
-            margin-right: 20px;
-        }
-        .menu li a.active {
-            font-weight: bold;
-        }
-    </style>
+    <title>Trang Chính</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <img id="background" src="" alt="Mùa hiện tại">
-    <ul class="menu" id="menu">
-        <li><a href="#" class="active">Trang Chủ</a></li>
-        <li><a href="#">Sản Phẩm</a></li>
-        <li><a href="#">About</a></li>
-    </ul>
-    
-    <script>
-        const background = document.getElementById("background");
-        const menuItems = document.querySelectorAll(".menu li a");
-
-        function setBackground() {
-            const now = new Date();
-            const currentMonth = now.getMonth() + 1;
-
-            let season = "";
-            let effect = "";
-
-            if (currentMonth >= 3 && currentMonth <= 5) {
-                season = "spring";
-                effect = "none";
-            } else if (currentMonth >= 6 && currentMonth <= 8) {
-                season = "summer";
-                effect = "none";
-            } else if (currentMonth >= 9 && currentMonth <= 11) {
-                season = "autumn";
-                effect = "falling-leaves";
-            } else {
-                season = "winter";
-                effect = "snow";
-            }
-
-            background.style.backgroundImage = `url('${season}.jpg')`;
-            background.style.backgroundSize = "cover";
-            background.style.backgroundPosition = "center";
-
-            menuItems.forEach(item => {
-                if (item.textContent === "Trang Chủ") {
-                    item.classList.add("active");
-                } else {
-                    item.classList.remove("active");
-                }
-            });
-
-            // Add code to trigger effects (falling leaves, snow, etc.)
-        }
-
-        setBackground();
-    </script>
+    <div class="header">
+        <h1>Trang Web của Bạn</h1>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <div class="content">
+        <!-- Nội dung trang chính -->
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
