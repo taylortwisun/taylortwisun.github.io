@@ -1,93 +1,55 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
-const container = document.querySelector(".container");
-const menuItems = document.querySelectorAll(".menu li a");
+const canvasContainer = document.getElementById("canvas-container");
+const seasons = {
+    spring: "#86c232",
+    winter: "#0099cc"
+};
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const leaves = [];
-const numberOfLeaves = 50;
+const setBackground = (season) => {
+    canvas.style.backgroundColor = seasons[season];
+};
 
-for (let i = 0; i < numberOfLeaves; i++) {
-    const leaf = {
-        x: Math.random() * canvas.width,
-        y: -Math.random() * canvas.height,
-        size: Math.random() * 50 + 20,
-        speed: Math.random() * 2 + 1
-    };
-    leaves.push(leaf);
-}
+// Hàm vẽ lá
+const drawLeaf = (x, y) => {
+    // Đoạn mã vẽ lá ở đây
+};
 
-function draw() {
+// Hàm vẽ tuyết rơi
+const drawSnowflake = (x, y) => {
+    // Đoạn mã vẽ tuyết rơi ở đây
+};
+
+// Hàm tạo hiệu ứng
+const animate = () => {
+    // Xoá canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    for (const leaf of leaves) {
-        leaf.y += leaf.speed;
-        if (leaf.y > canvas.height) {
-            leaf.y = -leaf.size;
-        }
-        drawLeaf(leaf);
+    // Gọi hàm vẽ lá hoặc tuyết rơi tùy theo mùa
+    if (canvas.style.backgroundColor === seasons.spring) {
+        drawLeaf();
+    } else if (canvas.style.backgroundColor === seasons.winter) {
+        drawSnowflake();
     }
 
-    requestAnimationFrame(draw);
-}
+    requestAnimationFrame(animate);
+};
 
-function drawLeaf(leaf) {
-    const leafImage = new Image();
-    leafImage.src = "leaf.png"; // Đường dẫn đến hình ảnh leaf.png
-
-    // Chờ hình ảnh tải xong trước khi vẽ
-    leafImage.onload = function() {
-        // Vẽ hình ảnh lá tại vị trí (x - size / 2, y) với kích thước size x size
-        ctx.drawImage(leafImage, leaf.x - leaf.size / 2, leaf.y, leaf.size, leaf.size);
-    };
-}
-
-function setBackground() {
-    const now = new Date();
-    const currentMonth = now.getMonth() + 1;
-
-    let season = "";
-    let effect = "";
-
-    if (currentMonth >= 3 && currentMonth <= 5) {
-        season = "spring";
-        effect = "none";
-    } else if (currentMonth >= 6 && currentMonth <= 8) {
-        season = "summer";
-        effect = "none";
-    } else if (currentMonth >= 9 && currentMonth <= 11) {
-        season = "autumn";
-        effect = "falling-leaves";
-    } else {
-        season = "winter";
-        effect = "snow";
-    }
-
-    container.classList = "container " + season;
-
-    setActiveMenuItem();
-
-    if (effect === "falling-leaves") {
-        draw();
-    } else if (effect === "snow") {
-        createFallingSnow();
-        draw();
-    }
-}
-
-function setActiveMenuItem() {
-    menuItems.forEach(item => {
-        item.classList.remove("active");
-    });
-    menuItems[0].classList.add("active");
-}
-
-function toggleMenu() {
-    var menu = document.getElementById("menu");
+// Hàm hiển thị/ẩn menu
+const toggleMenu = () => {
+    const menu = document.getElementById("menu");
     menu.classList.toggle("show");
-}
+};
 
-setBackground();
-draw(); // Bắt đầu hiệu ứng lá rơi ngay khi tải trang
+// Đặt màu nền ban đầu cho mùa xuân và bắt đầu hiệu ứng
+setBackground("spring");
+animate();
+
+// Xử lý sự kiện thay đổi kích thước màn hình
+window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
