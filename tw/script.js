@@ -1,5 +1,6 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
+const container = document.querySelector(".container");
 const menuItems = document.querySelectorAll(".menu li a");
 
 canvas.width = window.innerWidth;
@@ -19,6 +20,8 @@ for (let i = 0; i < numberOfLeaves; i++) {
     };
     leaves.push(leaf);
 }
+
+// Các đoạn mã khác (tạo hiệu ứng lá rơi và tuyết rơi)
 
 function drawLeaf(leaf) {
     ctx.fillStyle = "#33AA33";
@@ -72,37 +75,11 @@ function createFallingSnow() {
     }
 }
 
-function setBackground() {
-    const now = new Date();
-    const currentMonth = now.getMonth() + 1;
-
-    let season = "";
-    let effect = "";
-
-    if (currentMonth >= 3 && currentMonth <= 5) {
-        season = "spring";
-        effect = "none";
-    } else if (currentMonth >= 6 && currentMonth <= 8) {
-        season = "summer";
-        effect = "none";
-    } else if (currentMonth >= 9 && currentMonth <= 11) {
-        season = "autumn";
-        effect = "falling-leaves";
-    } else {
-        season = "winter";
-        effect = "snow";
-    }
-
-    container.className = season; // Đặt lớp tương ứng với mùa
-
-    setActiveMenuItem();
-
-    if (effect === "falling-leaves") {
-        draw();
-    } else if (effect === "snow") {
-        createFallingSnow();
-        draw();
-    }
+function setActiveMenuItem() {
+    menuItems.forEach(item => {
+        item.classList.remove("active");
+    });
+    menuItems[0].classList.add("active");
 }
 
 function toggleMenu() {
